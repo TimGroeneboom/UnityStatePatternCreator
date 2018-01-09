@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CodeFlow.Game
+namespace CodeFlow.Test.Game
 {
 	public class GameController : MonoBehaviour
 	{

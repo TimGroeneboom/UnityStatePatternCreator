@@ -71,7 +71,8 @@ namespace CodeFlow.TemplateScripts
         static public void GenerateClasses(string namespaceName, string contextName, string[] stateNames)
         {
 
-            var relativePath = Path.Combine(Path.Combine("Scripts", namespaceName), contextName);
+            var namespacePath = namespaceName.Replace('.', '/');
+            var relativePath = Path.Combine(Path.Combine("Scripts", namespacePath), contextName);
             var path = Path.Combine(Application.dataPath, relativePath);
             if (!Directory.Exists(path))
             {

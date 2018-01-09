@@ -5,11 +5,11 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CodeFlow.Game
+namespace CodeFlow.Test.Game
 {
-	public class GameMenuState : GameBaseState
+	public class GamePlayingState : GameBaseState
 	{
-		public GameMenuState(GameController controller) :  base(GameStateTypes.MENU, controller) 
+		public GamePlayingState(GameController controller) :  base(GameStateTypes.PLAYING, controller) 
 		{
 		}
 
