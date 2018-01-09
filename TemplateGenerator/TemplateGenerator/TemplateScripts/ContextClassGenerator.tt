@@ -1,0 +1,67 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace <#= namespaceName #>.<#= contextName #>
+{
+	public class <#= contextName #>Controller : MonoBehaviour
+	{
+		static public <#= contextName #>BaseState CreateState(<#= contextName #>StateTypes type, <#= contextName #>Controller controller)
+		{
+			switch(type)
+			{
+			<# foreach (var state in states) 
+			{ #>	case <#= contextName #>StateTypes.<#= state.ToUpper() #> : return new <#= contextName #><#= state #>State(controller);
+			<#} #>
+}
+		
+			throw new System.NotImplementedException();
+		}
+
+		public <#= contextName #>StateTypes Current<#= contextName #>Type
+		{ 
+			get
+			{
+				if( _currentState != null )
+				{
+					return _currentState.Type;
+				}
+				
+				return  <#= contextName #>StateTypes.UNKNOWN;
+			}
+		}
+
+		protected <#= contextName #>BaseState _currentState = null;
+
+		void Start()
+		{
+			ChangeState(<#= contextName #>StateTypes.<#= states[0].ToUpper() #>);
+		}
+
+		public void ChangeState(<#= contextName #>StateTypes type)
+		{
+			if( _currentState != null )
+			{
+				_currentState.Finish();
+			}
+
+			Debug.Log("<#= contextName #>Controller -> changing state to : " + type.ToString() );
+			_currentState = CreateState(type, this);
+			_currentState.Init();
+		}
+
+		void Update()
+		{
+			if( _currentState != null )
+			{
+				_currentState.Update();
+			}
+		}
+	}
+}

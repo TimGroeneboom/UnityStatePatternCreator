@@ -1,0 +1,41 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace <#= namespaceName #>.<#= contextName #>
+{
+	public enum <#= contextName #>StateTypes
+	{
+<# foreach (var state in states) 
+{ #>		<#= state.ToUpper() #>, 
+<#} #>
+		UNKNOWN
+	}
+
+	public abstract class <#= contextName #>BaseState 
+	{
+		public <#= contextName #>BaseState(
+			<#= contextName #>StateTypes type, 
+			<#= contextName #>Controller controller)
+		{
+			_controller = controller;
+			_type = type;
+		}
+
+		public <#= contextName #>StateTypes Type{ get{ return _type; }}
+		protected <#= contextName #>StateTypes _type = <#= contextName #>StateTypes.UNKNOWN;
+
+		public <#= contextName #>Controller Controller{ get{ return _controller; }}
+		protected <#= contextName #>Controller _controller;
+
+		public abstract void Init();
+		public abstract void Update();
+		public abstract void Finish();
+	}
+}

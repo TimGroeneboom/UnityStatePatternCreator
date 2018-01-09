@@ -1,0 +1,31 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace <#= namespaceName #>.<#= contextName #>
+{
+	public class <#=contextName #><#= stateName #>State : <#= contextName #>BaseState
+	{
+		public <#=contextName #><#= stateName #>State(<#=contextName #>Controller controller) :  base(<#= contextName #>StateTypes.<#= stateName.ToUpper() #>, controller) 
+		{
+		}
+
+		public override void Init()
+		{
+		}
+
+		public override void Update()
+		{
+		}
+
+		public override void Finish()
+		{
+		}
+	}
+}
